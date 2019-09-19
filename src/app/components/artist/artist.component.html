@@ -1,0 +1,34 @@
+<app-loading *ngIf="loadingArtist"></app-loading>
+
+<div class="albums-container">
+
+    <div class="artist-name-container" *ngIf="!loadingArtist">
+        <h1 class="artist-name">{{ artist.name }}</h1>
+        <img class="artist-img-top" [src]="artist.images | noimage" alt="Artist image">
+        <p>
+            <a [href]="artist.external_urls.spotify" target="_blank">
+                <button class="btn-open-artist">
+                    Open on Spotify
+                </button>
+            </a>
+        </p>
+    </div>
+
+    <div class="artist-cards-container">
+        <h1 class="title">Albums</h1>
+
+        <div class="cards-container">
+                <div (click)="showAlbum( album )" *ngFor="let album of albums" class="card">
+                    
+                    <script>console.log(item.name);</script>
+                    <img class="card-img-top" [src]="album.images | noimage" alt="Album image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ album.name }}</h5>
+                    </div>
+                </div>
+            
+            </div>
+
+    </div>
+
+</div>

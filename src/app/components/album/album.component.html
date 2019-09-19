@@ -1,0 +1,22 @@
+<div tracks-table-container>
+    <table class="tracks-table">
+        <thead>
+            <tr class="table-titles">
+                <th><p>Song</p></th>
+                <th><p>Play</p></th>
+                <th><p>Favorite</p></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let track of tracks">
+                <td><p>{{ track.name }}</p></td>
+                <td>
+                    <iframe [src]="track.uri | domsanitizer" width="80" height="80" frameborder="0"
+                        allowtransparency="true" allow="encrypted-media"></iframe>
+                </td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
