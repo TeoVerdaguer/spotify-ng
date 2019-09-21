@@ -1,0 +1,10 @@
+<div class="cards-container">
+
+    <div (click)="showArtist( item )" *ngFor="let item of items" class="card">
+        <img class="card-img-top" [src]="item.images | noimage" alt="Artist image">
+        <div class="card-body">
+            <h5 class="card-title">{{ item.name }}</h5>
+        </div>
+    </div>
+
+</div>

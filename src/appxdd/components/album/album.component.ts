@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SpotifyService } from 'src/app/services/spotify.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './album.component.html',
   styleUrls: ['./album.component.scss']
 })
-export class AlbumComponent implements OnInit{
+export class AlbumComponent {
 
   albumId: string;
   tracks: any[];
@@ -22,8 +22,18 @@ export class AlbumComponent implements OnInit{
       this.getTracks(params['id']);
     });
 
+    if (JSON.parse(localStorage.getItem("favorites")).favorites.length >= 1){
+      for (let item in JSON.parse(localStorage.getItem("favorites")).favorites) {
+        console.log(item);
+        AlbumComponent.favorites.push(item);
+      }
+    }
+    
+
     // AlbumComponent.favorites.push(localStorage.getItem("favorites"));
+
   }
+
 
   getTracks(id: string) {
     console.log(this.albumId);
@@ -59,15 +69,6 @@ export class AlbumComponent implements OnInit{
 
   onClick() {
     this.isActive = !this.isActive;
-  }
-
-  ngOnInit(){
-    //get favorites from local storage
-    if (localStorage.getItem("favorites") != null) {
-      for (let item in JSON.parse(localStorage.getItem("favorites")).favorites) {
-        AlbumComponent.favorites.push(item);
-      }
-    }
   }
 
 }

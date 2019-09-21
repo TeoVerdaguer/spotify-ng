@@ -1,0 +1,14 @@
+<!-- Search -->
+<div class="search-container">
+    <!-- <input #term type="text" name="searchStr" (keyup)="searchMusic(term.value)" class="search-input" -->
+    <input #term type="text" name="searchStr" (keyup)="searchMusic(term.value)" class="search-input"
+        placeholder="Search music...">
+</div>
+
+<div class="title-container">
+    <h1 class="title">Artists</h1>
+</div>
+
+<app-loading class="loading" *ngIf="loading"></app-loading>
+
+<app-cards *ngIf="searching" [items]="artists"></app-cards>

@@ -11,15 +11,14 @@ export class HomeComponent implements OnInit {
 
   favTracks: any[];
   favorites: any[] = [];
-  favs: any[];
 
   constructor(private router: Router,
     private spotify: SpotifyService,
     private router2: ActivatedRoute) {
 
-      this.router2.params.subscribe(params => {
-        this.getTrack(params['id']);
-      });
+    this.router2.params.subscribe(params => {
+      spotify.getTrack(params['id']);
+    });
   }
 
 
@@ -33,9 +32,6 @@ export class HomeComponent implements OnInit {
     this.favTracks = JSON.parse((localStorage.getItem("favorites")));
     console.log(this.favTracks);
     this.tracksGetter();
-    for(let item of this.favorites){
-      console.log("Favs: " + item.name);
-    }
   }
 
   login() {
@@ -55,17 +51,15 @@ export class HomeComponent implements OnInit {
   tracksGetter() {
     for (let item of this.favTracks) {
       console.log("hola: " + item);
-      this.favorites.push(this.spotify.getTrack(item));
-      console.log("favorites: " + this.favorites)
+      this.favorites.push(this.getTrack(item));
     }
   }
-
 
   getTrack(id: string) {
     this.spotify.getTrack(id)
       .subscribe(track => {
-        this.favs = track;
-        console.log(this.favs);
+        this.favTracks = track;
+        console.log(this.favTracks);
       })
   }
 
