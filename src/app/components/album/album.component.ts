@@ -7,11 +7,11 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './album.component.html',
   styleUrls: ['./album.component.scss']
 })
-export class AlbumComponent implements OnInit{
+export class AlbumComponent implements OnInit {
 
   albumId: string;
   tracks: any[];
-  static favorites: any[] = [];
+  static favorites: any[];
   isFavorite: boolean;
   isActive = false;
 
@@ -21,8 +21,6 @@ export class AlbumComponent implements OnInit{
     this.router.params.subscribe(params => {
       this.getTracks(params['id']);
     });
-
-    // AlbumComponent.favorites.push(localStorage.getItem("favorites"));
   }
 
   getTracks(id: string) {
@@ -34,8 +32,6 @@ export class AlbumComponent implements OnInit{
       })
   }
 
-  // NEW
-
   addToFav(id: string) {
     if (AlbumComponent.favorites.includes(id)) {
       this.removeItem(id);
@@ -44,8 +40,6 @@ export class AlbumComponent implements OnInit{
       AlbumComponent.favorites.push(id);
       this.isFavorite = false;
     }
-
-    console.log(AlbumComponent.favorites);
     localStorage.setItem("favorites", JSON.stringify(AlbumComponent.favorites));
   }
 
@@ -61,10 +55,16 @@ export class AlbumComponent implements OnInit{
     this.isActive = !this.isActive;
   }
 
-  ngOnInit(){
+
+  ngOnInit() {
     //get favorites from local storage
-    if (localStorage.getItem("favorites") != null) {
-      for (let item in JSON.parse(localStorage.getItem("favorites")).favorites) {
+    if (localStorage.getItem("favorites") === null) {
+      AlbumComponent.favorites = [];
+      console.log("LS favorites is empty");
+    } else {
+      console.log("LS favorites is not empty");
+      AlbumComponent.favorites = [];
+      for (let item of JSON.parse(localStorage.getItem("favorites"))) {
         AlbumComponent.favorites.push(item);
       }
     }

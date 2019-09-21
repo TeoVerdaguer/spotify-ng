@@ -26,10 +26,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.login();
     // get favorites from localStorage
-    // for (let item in JSON.parse(localStorage.getItem("favorites")).favorites) {
-    //   console.log("itemmm" + item);
-    //   this.favTracks.push(item);
-    // }
     this.favTracks = JSON.parse((localStorage.getItem("favorites")));
     console.log(this.favTracks);
     this.tracksGetter();
