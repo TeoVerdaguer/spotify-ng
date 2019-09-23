@@ -18,16 +18,14 @@
         <h1 class="title">Albums</h1>
 
         <div class="cards-container">
-                <div (click)="showAlbum( album )" *ngFor="let album of albums" class="card">
-                    
-                    <script>console.log(item.name);</script>
-                    <img class="card-img-top artist" [src]="album.images | noimage" alt="Album image">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ album.name }}</h5>
-                    </div>
+            <div (click)="showAlbum( album )" *ngFor="let album of albums" class="card">
+                <img class="card-img-top artist" [src]="album.images | noimage" alt="Album image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ album.name }}</h5>
                 </div>
-            
             </div>
+
+        </div>
 
     </div>
 

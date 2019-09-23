@@ -297,3 +297,18 @@ button {
 // .fa-heart.active {
 //     color: $color-red;
 // }
+
+.fav-album-img {
+    height: 100px;
+    width: 100px;
+}
+
+@media only screen and (max-width: 600px) {
+    .fav-album-img{
+        display: none;
+    }
+}
+
+th {
+    color: $color-white;
+}

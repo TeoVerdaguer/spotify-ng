@@ -9,29 +9,44 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 })
 export class HomeComponent implements OnInit {
 
-  favTracks: any[];
-  favorites: any[] = [];
-  favs: any[];
+  favTracksId: string[] = [];
+  favorites: any[];
+
+  tracks: any[] = [];
 
   constructor(private router: Router,
     private spotify: SpotifyService,
     private router2: ActivatedRoute) {
-
-      this.router2.params.subscribe(params => {
-        this.getTrack(params['id']);
-      });
   }
-
 
   ngOnInit() {
     this.login();
-    // get favorites from localStorage
-    this.favTracks = JSON.parse((localStorage.getItem("favorites")));
-    console.log(this.favTracks);
-    this.tracksGetter();
-    for(let item of this.favorites){
-      console.log("Favs: " + item.name);
+
+    // get favorite tracks IDs from localStorage
+
+    for (let item of JSON.parse((localStorage.getItem("favorites")))) {
+      this.favTracksId.push(item);
     }
+
+    for (let i of this.favTracksId) {
+      this.router2.params.subscribe(params => {
+        this.getTrack(i);
+      });
+    }
+
+    // saves tracks into 'favorites' array
+
+    // this.tracksGetter();
+    // this.seeTracks();
+    console.log(this.tracks);
+  }
+
+  getTrack(id: string) {
+    console.log("FAVTRACKS ID: " + id);
+    this.spotify.getTrack(id)
+      .subscribe(track => {
+        this.tracks.push(track);
+      })
   }
 
   login() {
@@ -47,24 +62,20 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  //new
   tracksGetter() {
-    for (let item of this.favTracks) {
-      console.log("hola: " + item);
+    for (let item of this.favTracksId) {
+      console.log("item///" + item + "///");
       this.favorites.push(this.spotify.getTrack(item));
-      console.log("favorites: " + this.favorites)
+      console.log("-------" + this.spotify.getTrack(item));
     }
   }
 
-
-  getTrack(id: string) {
-    this.spotify.getTrack(id)
-      .subscribe(track => {
-        this.favs = track;
-        console.log(this.favs);
-      })
+  //........
+  seeTracks() {
+    for (let song of this.tracks) {
+      // console.log("item-----" + song);
+      console.log("LOG---"+JSON.stringify(song, null, 2));
+    }
   }
-
-
 
 }

@@ -75,8 +75,6 @@ export class SpotifyService {
   }
 
   getTrack (id: string) {
-    return this.getUrl(`tracks/${id}`).pipe(
-      map(data => data["items"])
-    );
+    return this.getUrl(`tracks/${id}`);
   }
 }

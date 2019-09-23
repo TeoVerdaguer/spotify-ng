@@ -2,25 +2,33 @@
     <h1 class="title">Favorites</h1>
 
     <div tracks-table-container>
-            <table class="tracks-table">
-        
-                <tbody>
-                    <tr *ngFor="let track of favs">
-                        <td>
-                            <p>Nombre</p>
-                            <p>{{ track.name }}</p>
-                        </td>
-                        <td>
-                            <div>
-                                <button (click)="addToFav(track.id)">
-                                    <div (click)="onClick()">
-                                        <i class="fas fa-heart fa-4x" [ngClass]="{'active': isActive}"></i>
-                                    </div>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <table class="tracks-table">
+            <thead>
+                <tr class="table-titles">
+                    <th></th>
+                    <th>Song</th>
+                    <th>Album</th>
+                    <th>Play</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let track of tracks">
+                    <td>
+                        <img class="fav-album-img" [src]="track.album.images | noimage" alt="Album image">
+                    </td>
+                    <td>
+                        <p>{{ track.name }}</p>
+                    </td>
+                    <td>
+                        <p>{{ track.album.name }}</p>
+                    </td>
+                    <td>
+                        <iframe [src]="track.uri | domsanitizer" width="80" height="80" frameborder="0"
+                            allowtransparency="true" allow="encrypted-media"></iframe>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

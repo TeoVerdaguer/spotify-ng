@@ -24,7 +24,7 @@ export class AlbumComponent implements OnInit {
   }
 
   getTracks(id: string) {
-    console.log(this.albumId);
+    console.log("ALBUM ID: " + this.albumId);
     this.spotify.getTracks(id)
       .subscribe(track => {
         this.tracks = track;
@@ -57,13 +57,12 @@ export class AlbumComponent implements OnInit {
 
 
   ngOnInit() {
+    AlbumComponent.favorites = [];
     //get favorites from local storage
     if (localStorage.getItem("favorites") === null) {
-      AlbumComponent.favorites = [];
       console.log("LS favorites is empty");
     } else {
       console.log("LS favorites is not empty");
-      AlbumComponent.favorites = [];
       for (let item of JSON.parse(localStorage.getItem("favorites"))) {
         AlbumComponent.favorites.push(item);
       }
