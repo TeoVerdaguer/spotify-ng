@@ -1,9 +1,9 @@
-<div tracks-table-container>
+<div class="tracks-table-container">
     <table class="tracks-table">
         <thead>
             <tr class="table-titles">
                 <th>
-                    <p>Song</p>
+                    <p class="track-title">Song</p>
                 </th>
                 <th>
                     <p>Play</p>
@@ -17,11 +17,11 @@
         <tbody>
             <tr *ngFor="let track of tracks">
                 <td>
-                    <p>{{ track.name }}</p>
+                    <p class="track-name">{{ track.name }}</p>
                 </td>
                 <td>
-                    <iframe [src]="track.uri | domsanitizer" width="80" height="80" frameborder="0"
-                        allowtransparency="true" allow="encrypted-media"></iframe>
+                    <iframe class="prueba" [src]="track.uri | domsanitizer" frameborder="0" height="80"
+                    allowtransparency="true" allow="encrypted-media"></iframe>
                 </td>
                 <td>
                     <div>

@@ -22,6 +22,16 @@ body {
 // -----------------------
 
 // Navigation Bar
+@media only screen and (max-width: 600px) {
+    .navLinks-container {
+        width: screen;
+        justify-content: space-between;
+    }
+    .nav-links {
+        width: 100%;
+    }
+}
+
 nav {
     height: 10vh;
     background: $color-green;
@@ -264,15 +274,22 @@ p {
 .tracks-table-container {
     display: flex;
     width: 100%;
+    margin-top: 50px;
 }
 
 .tracks-table {
     border-collapse: collapse;
-    width: 100%
+    width: 100%;
 }
 
-th, td {
+th {
     border-bottom: 1px solid #ddd;
+    text-align: center;
+    padding: 8px;
+}
+
+td {
+    // border-bottom: 1px solid #ddd;
     text-align: center;
     padding: 8px;
   }
@@ -280,6 +297,12 @@ th, td {
   tr:nth-child(even) {background-color: $color-gray;}
 
   tr:nth-child(odd) {background-color: #141111;}
+
+  @media only screen and (max-width: 600px) {
+      .track-name{display: none;}
+      .track-title{display: none;}
+  }
+
 
 // HEART BUTTON
 
@@ -294,9 +317,9 @@ button {
 }
 
 // This property changes the color of the pressed buttons (not working yet)
-// .fa-heart.active {
-//     color: $color-red;
-// }
+.fa-heart.active {
+    color: $color-red;
+}
 
 .fav-album-img {
     height: 100px;
@@ -306,6 +329,9 @@ button {
 @media only screen and (max-width: 600px) {
     .fav-album-img{
         display: none;
+    }
+    .prueba {
+        width: 80px;
     }
 }
 
